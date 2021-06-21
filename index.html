@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Tetirs</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <main>
+        <section class="tetris">
+            <div class="tetris__wrapper">
+                <canvas 
+                    class="tetris__canvas"></canvas>                
+            </div>
+            
+            <div class="score__wrapper">
+                <div class="score__title">NEXT</div>
+                <canvas class="score__next-shape"></canvas>
+
+                <div class="score__title">LINES</div>
+                <div class="score__number" id="current-score">0 0 0 0</div>
+
+                <div class="score__btn" id="pause-btn">PAUSE</div>
+                <div class="score__btn" id="menu-btn">MENU</div>
+            </div>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="board.js"></script>
+    <script type="text/javascript" src="block.js"></script>
+    <script type="text/javascript" src="move.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿*{
+    color:white;
+}
+
+body
+{
+    background-color:grey;
+}
+
+.tetris {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: fit-content;
+    background-color: #121012;
+}
+
+.tetris__wrapper {
+    border-right: 5px solid #BBBABC;
+}
+
+.score__wrapper{
+    margin-left : 5%;
+}
+
+.score__next-shape {
+    background-color: #252329;
+}
+
+.score__title, .score__number{
+    font-size: 2.5rem;
+    margin-top: 3%;
+}
+
+.score__btn {
+    margin-top : 1vh;
+    border : 1px solid white;
+    border-radius: 10%;
+    font-size : 2rem;
+    height: 7%;
+    width: 60%;
+    padding : 5px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
