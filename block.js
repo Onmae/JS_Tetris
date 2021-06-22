@@ -1,47 +1,47 @@
 const TETRIS_BLOCK = [
-    //   ¡à¡à
-    // ¡à¡à
+    //   ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½
     [
         [0, 1, 1],
         [1, 1, 0],
         [0, 0, 0]
     ],
-    // ¡à
-    // ¡à¡à¡à
+    // ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½
     [
         [2, 0, 0],
         [2, 2, 2],
         [0, 0, 0]
     ],
-    //   ¡à
-    // ¡à¡à¡à
+    //   ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½
     [
         [0, 3, 0],
         [3, 3, 3],
         [0, 0, 0]
     ],
-    // ¡à¡à¡à¡à
+    // ï¿½ï¿½ï¿½ï¿½ï¿½
     [
-        [0, 0, 0, 0],
-        [4, 4, 4, 4],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0]
+        [0, 0, 4, 0],
+        [0, 0, 4, 0],
+        [0, 0, 4, 0],
+        [0, 0, 4, 0]
     ],
-    // ¡à¡à
-    // ¡à¡à
+    // ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½
     [
         [5, 5],
         [5, 5]
     ],
-    //     ¡à
-    // ¡à¡à¡à
+    //     ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½
     [
         [0, 0, 6],
         [6, 6, 6],
         [0, 0, 0]
     ],
-    // ¡à¡à
-    //   ¡à¡à
+    // ï¿½ï¿½ï¿½
+    //   ï¿½ï¿½ï¿½
     [
         [7, 7, 0],
         [0, 7, 7],
@@ -49,12 +49,23 @@ const TETRIS_BLOCK = [
     ]
 ];
 
-//·£´ýÇÔ¼ö
+const BLOCK_COLOR = [
+    "",
+    "#E96B93",
+    "#EFA93F",
+    "#F2DD00",
+    "#C8D338",
+    "#78C1B5",
+    "#6FBBE2",
+    "#978FCA"
+]
+
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
 function getRandomIndex(length) {
     return Math.floor(Math.random() * length);
 }
 
-//¹«ÀÛÀ§ ºí·° ¼±ÅÃ ÇÔ¼ö
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 function getRandomBlock() {
     return TETRIS_BLOCK[getRandomIndex(TETRIS_BLOCK.length)];
 }
@@ -78,16 +89,19 @@ function drawBlock(block, ctx) {
     block.shape.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value > 0) {
-                ctx.fillStyle = 'white';
+                ctx.fillStyle = BLOCK_COLOR[value];
                 ctx.fillRect(x + block.x, y + block.y, 1, 1);
             }
         });
     });
 }
+ 
 
 function rebuild() {
     resize();
     drawBlock(mainBlock, ctxMain);
     drawBlock(nextBlock, ctxNext);
+    drawBoard(ctxMain);
 }
+
 

@@ -10,8 +10,8 @@
     <main>
         <section class="tetris">
             <div class="tetris__wrapper">
-                <canvas 
-                    class="tetris__canvas"></canvas>                
+                <canvas class="tetris__canvas"></canvas>
+                <div class="gameover hidden">Game Over</div>             
             </div>
             
             <div class="score__wrapper">
@@ -19,7 +19,7 @@
                 <canvas class="score__next-shape"></canvas>
 
                 <div class="score__title">LINES</div>
-                <div class="score__number" id="current-score">0 0 0 0</div>
+                <div class="score__number" id="current-score">0</div>
 
                 <div class="score__btn" id="pause-btn">PAUSE</div>
                 <div class="score__btn" id="menu-btn">MENU</div>
@@ -30,6 +30,7 @@
     <script type="text/javascript" src="board.js"></script>
     <script type="text/javascript" src="block.js"></script>
     <script type="text/javascript" src="move.js"></script>
+    <script type="text/javascript" src="matrix.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

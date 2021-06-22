@@ -16,10 +16,13 @@ body
 
 .tetris__wrapper {
     border-right: 5px solid #BBBABC;
+    position: relative;
 }
 
 .score__wrapper{
-    margin-left : 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .score__next-shape {
@@ -28,7 +31,12 @@ body
 
 .score__title, .score__number{
     font-size: 2.5rem;
-    margin-top: 3%;
+    padding-top: 3%;
+}
+
+.score__number {
+    position: relative;
+    left: 23%;
 }
 
 .score__btn {
@@ -43,3 +51,20 @@ body
     justify-content:center;
     align-items: center;
 }
+
+.gameover {
+    background-color: #808080;
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    top: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.hidden {
+    visibility: hidden;
+}
+

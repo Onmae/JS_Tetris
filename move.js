@@ -23,7 +23,9 @@ function vaildCheck(block) {
     block.shape.forEach((row, dy) => {
         row.some((value, dx) => {
             if (value > 0) {
-                if (block.x + dx < 0 || block.y + dy < 0 || block.x + dx >= MAIN_COLS || block.y + dy >= MAIN_ROWS) {
+                if (block.x + dx < 0 || block.y + dy < 0 ||
+                    block.x + dx >= MAIN_COLS || block.y + dy >= MAIN_ROWS ||
+                    MATRIX[block.y+dy][block.x+dx] > 0) {
                     isVaild = false;
                     return true;
                 }
@@ -71,7 +73,8 @@ function keyAction(event) {
         LEFT: 37,
         UP: 38,
         RIGHT: 39,
-        DOWN: 40
+        DOWN: 40,
+        SPACE_BAR: 32
     }
 
     switch (inputKey) {
@@ -86,6 +89,9 @@ function keyAction(event) {
             break;
         case KEY.DOWN:
             vaildMove(mainBlock, 0, 1);
+            break;
+        case KEY.SPACE_BAR:
+            while (vaildMove(mainBlock, 0, 1));
             break;
     }
 
