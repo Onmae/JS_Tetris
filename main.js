@@ -1,9 +1,11 @@
 // JavaScript source code
 const GAMEOVER = document.querySelector(".gameover");
 const SCORE = document.querySelector("#current-score");
+const HIGHSCORE = document.querySelector("#high-score");
 const PAUSE = document.querySelector("#pause-btn");
 const START = document.querySelector("#start-btn");
 
+let highscore = 0;
 let isPause = false;
 let time = 0;
 let stopAnimation = null;
@@ -29,9 +31,10 @@ function repeatMove(timeStamp) {
             time = 0;
         }
 
-        if (timeStamp - timeforDeleteLine > 300) {
+        if (timeStamp - timeforDeleteLine > 300 ) {
             score++;
             SCORE.innerHTML = score;
+            highscoreCheck();
             deleteLine(filled);
             timeforDeleteLine = 0;
             time = 0;
@@ -65,6 +68,8 @@ function AfterMove() {
 function gameOver(ctx) {
     GAMEOVER.classList.toggle('hidden');
     PAUSE.removeEventListener("mousedown", pauseButtonPress);
+    highscoreInit();
+    score = 0;
     playing = false;
 }
 
@@ -111,6 +116,7 @@ function start() {
     playing = true;
     window.addEventListener('keydown', keyAction);
     PAUSE.addEventListener('mousedown', pauseButtonPress);
+    SCORE.innerHTML = score;
     repeatMove(0);
 }
 
@@ -132,8 +138,21 @@ function AnimationDeleteLine(filledLine,ctx) {
     })
 }
 
+function highscoreInit() {
+    if (localStorage.getItem('high score') !== null) highscore = localStorage.getItem('high score');
+    HIGHSCORE.innerHTML = highscore
+}
+
+function highscoreCheck() {
+    if (highscore < score) {
+        localStorage.setItem('high score', score);
+        HIGHSCORE.innerHTML = localStorage.getItem('high score');
+    }
+}
+
 function main() {
     resize();
+    highscoreInit();
     window.addEventListener('resize', rebuild);
     makePlaidBoard(MAIN_COLS, MAIN_ROWS,ctxMain);
     makePlaidBoard(NEXT_COLS,NEXT_ROWS,ctxNext);

@@ -74,7 +74,8 @@ function keyAction(event) {
         UP: 38,
         RIGHT: 39,
         DOWN: 40,
-        SPACE_BAR: 32
+        SPACE_BAR: 32,
+        P: 80
     }
 
     switch (inputKey) {
@@ -94,6 +95,9 @@ function keyAction(event) {
             while (vaildMove(mainBlock, 0, 1));
             AfterMove();
             time = 0;
+            break;
+        case KEY.P:
+            pauseButtonPress();
             break;
     }
 
