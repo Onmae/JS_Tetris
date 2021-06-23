@@ -36,3 +36,17 @@ function drawBoard(ctx) {
         })
     })
 }
+
+function makePlaidBoard(cols,rows, ctx) {
+    for (let i = 0; i < cols; i++ ){
+        for (let j = 0; j < rows; j++){
+            if ((i%2 == 0 && j%2 == 0) || (i%2 == 1 && j%2 == 1)) {
+                ctx.fillStyle = "rgba(100, 16, 18, 0.3)";
+            }
+            else {
+                ctx.fillStyle = "rgba(18, 16, 18, 10)";
+            }
+            ctx.fillRect(i, j, 1, 1);
+        }
+    }
+}

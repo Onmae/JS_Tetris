@@ -92,6 +92,8 @@ function keyAction(event) {
             break;
         case KEY.SPACE_BAR:
             while (vaildMove(mainBlock, 0, 1));
+            AfterMove();
+            time = 0;
             break;
     }
 

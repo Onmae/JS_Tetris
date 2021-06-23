@@ -1,4 +1,22 @@
-const TETRIS_BLOCK = [
+const BLOCK_COLOR = [
+    "",
+    "#E96B93",
+    "#EFA93F",
+    "#F2DD00",
+    "#C8D338",
+    "#78C1B5",
+    "#6FBBE2",
+    "#978FCA"
+]
+
+//�����Լ�
+function getRandomIndex(length) {
+    return Math.floor(Math.random() * length);
+}
+
+//������ ���� ���� �Լ�
+function getRandomBlock() {
+    const TETRIS_BLOCK = [
     //   ���
     // ���
     [
@@ -49,24 +67,6 @@ const TETRIS_BLOCK = [
     ]
 ];
 
-const BLOCK_COLOR = [
-    "",
-    "#E96B93",
-    "#EFA93F",
-    "#F2DD00",
-    "#C8D338",
-    "#78C1B5",
-    "#6FBBE2",
-    "#978FCA"
-]
-
-//�����Լ�
-function getRandomIndex(length) {
-    return Math.floor(Math.random() * length);
-}
-
-//������ ���� ���� �Լ�
-function getRandomBlock() {
     return TETRIS_BLOCK[getRandomIndex(TETRIS_BLOCK.length)];
 }
 
@@ -84,8 +84,6 @@ function createNextBlock() {
 }
 
 function drawBlock(block, ctx) {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
     block.shape.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value > 0) {
@@ -95,10 +93,11 @@ function drawBlock(block, ctx) {
         });
     });
 }
- 
 
 function rebuild() {
     resize();
+    makePlaidBoard(MAIN_COLS, MAIN_ROWS, ctxMain);
+    makePlaidBoard(NEXT_COLS,NEXT_ROWS,ctxNext);
     drawBlock(mainBlock, ctxMain);
     drawBlock(nextBlock, ctxNext);
     drawBoard(ctxMain);

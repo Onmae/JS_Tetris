@@ -28,5 +28,4 @@ function deleteLine(filledLine) {
         MATRIX.splice(y, 1);
         MATRIX.unshift(new Array(MATRIX[0].length).fill(0));
     })
-    filledLine.clear();
 }
