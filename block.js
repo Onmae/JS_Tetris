@@ -101,6 +101,7 @@ function rebuild() {
     drawBlock(mainBlock, ctxMain);
     drawBlock(nextBlock, ctxNext);
     drawBoard(ctxMain);
+    AnimationDeleteLine(filled, ctxMain);
 }
 
 

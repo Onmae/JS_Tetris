@@ -20,7 +20,6 @@ function isFilledLine() {
             filled.add(y);
         }
     })
-    return filled;
 }
 
 function deleteLine(filledLine) {

@@ -30,39 +30,38 @@ function repeatMove(timeStamp) {
         }
 
         if (timeStamp - timeforDeleteLine > 300) {
+            score++;
+            SCORE.innerHTML = score;
+            deleteLine(filled);
             timeforDeleteLine = 0;
             time = 0;
             filled.clear();
+            getNextblock();
         }
     }
+    
     rebuild();
-
     if (playing) stopAnimation = window.requestAnimationFrame(repeatMove);
     else quit();
 }
 
 function AfterMove() {
     stackBlock(mainBlock);
-    
-    filled = isFilledLine();
+    isFilledLine();
 
+    if (filled.size === 0) {
         
-    if (filled.size > 0) {
-        score++;
-        SCORE.innerHTML = score;
-        deleteLine(filled);
-    }
-
-    const cloneNextBlock = clone(nextBlock);
-    cloneNextBlock.y = 0;
-    cloneNextBlock.x = 3;
-    if (vaildCheck(cloneNextBlock)) {
-        getNextblock();
-    } else {
-        gameOver(ctxMain);
+        const cloneNextBlock = clone(nextBlock);
+        cloneNextBlock.y = 0;
+        cloneNextBlock.x = 3;
+        if (vaildCheck(cloneNextBlock)) {
+            getNextblock();
+        } else {
+            gameOver(ctxMain);
+        }
     }
 }
-
+    
 function gameOver(ctx) {
     GAMEOVER.classList.toggle('hidden');
     PAUSE.removeEventListener("mousedown", pauseButtonPress);
@@ -124,10 +123,19 @@ function startButtonPress() {
     });
 }
 
+function AnimationDeleteLine(filledLine,ctx) {
+    filledLine.forEach((row,y) => {
+        for (let x = 0; x < MAIN_COLS; x++){
+            ctx.fillStyle = "rgb(255,0,0)";
+            ctx.fillRect(x, row, 1, 1);
+        }
+    })
+}
+
 function main() {
     resize();
     window.addEventListener('resize', rebuild);
-    makePlaidBoard(MAIN_COLS,MAIN_ROWS,ctxMain);
+    makePlaidBoard(MAIN_COLS, MAIN_ROWS,ctxMain);
     makePlaidBoard(NEXT_COLS,NEXT_ROWS,ctxNext);
     startButtonPress();
 }
